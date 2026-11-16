@@ -11,10 +11,33 @@ interface AuthState {
   error: string | null
 }
 
+const getStoredAuth = () => {
+  const token = localStorage.getItem('fitzone_token')
+  const storedUser = localStorage.getItem('fitzone_user')
+
+  if (!token || !storedUser) {
+    return { user: null, token: null }
+  }
+
+  try {
+    return {
+      user: JSON.parse(storedUser) as User,
+      token,
+    }
+  } catch {
+    localStorage.removeItem('fitzone_token')
+    localStorage.removeItem('fitzone_user')
+
+    return { user: null, token: null }
+  }
+}
+
+const storedAuth = getStoredAuth()
+
 const initialState: AuthState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
+  user: storedAuth.user,
+  token: storedAuth.token,
+  isAuthenticated: Boolean(storedAuth.token && storedAuth.user),
   isLoading: false,
   error: null,
 }

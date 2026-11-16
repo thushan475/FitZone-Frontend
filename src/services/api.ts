@@ -1,5 +1,7 @@
 
 import axios from 'axios'
+import { store } from '../store/store'
+import { logout } from '../store/authSlice'
 
 const api = axios.create({
   baseURL: 'http://localhost:5000/api',
@@ -7,5 +9,32 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 })
+
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('fitzone_token')
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+
+    return config
+  },
+  (error) => Promise.reject(error),
+)
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const isAuthEndpoint = error.config?.url?.startsWith('/auth/')
+
+    if (error.response?.status === 401 && !isAuthEndpoint) {
+      store.dispatch(logout())
+      window.location.href = '/login'
+    }
+
+    return Promise.reject(error)
+  },
+)
 
 export default api
