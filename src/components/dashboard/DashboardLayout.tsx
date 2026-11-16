@@ -77,6 +77,10 @@ function DashboardLayout({
             navigate("/admin/members");
         }
 
+        if (label === "Trainers" && isAdmin) {
+            navigate("/admin/trainers");
+        }
+
         setSidebarOpen(false);
     };
 
@@ -135,7 +139,8 @@ function DashboardLayout({
 
                             const available =
                                 item.label === "Dashboard" ||
-                                (isAdmin && item.label === "Members");
+                                (isAdmin &&
+                                    ["Members", "Trainers"].includes(item.label));
 
                             return (
                                 <button

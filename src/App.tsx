@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage'
 import AdminDashboardPage from './pages/AdminDashboardPage'
 import MemberDashboardPage from './pages/MemberDashboardPage'
 import MemberManagementPage from './pages/MemberManagementPage'
+import TrainerManagementPage from './pages/TrainerManagementPage'
 
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -32,6 +33,10 @@ function App() {
             <Route
               path="/admin/members"
               element={<MemberManagementPage />}
+            />
+            <Route
+              path="/admin/trainers"
+              element={<TrainerManagementPage />}
             />
           </Route>
 
