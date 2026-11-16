@@ -1,26 +1,19 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import type { RootState, AppDispatch } from '../store/store'
-import { logout } from '../store/authSlice'
+import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../store/store'
 
 function DashboardPage() {
-  const dispatch = useDispatch<AppDispatch>()
-  const navigate = useNavigate()
-
   const user = useSelector((state: RootState) => state.auth.user)
 
-  const handleLogout = () => {
-    dispatch(logout())
-    navigate('/login', { replace: true })
+  if (!user) {
+    return <Navigate to="/login" replace />
   }
 
-  return (
-    <div>
-      <h1>Welcome, {user?.name}</h1>
-      <p>Role: {user?.role}</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
-  )
+  if (user.role === 'ADMIN') {
+    return <Navigate to="/admin/dashboard" replace />
+  }
+
+  return <Navigate to="/member/dashboard" replace />
 }
 
 export default DashboardPage

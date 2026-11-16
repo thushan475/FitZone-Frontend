@@ -1,5 +1,4 @@
-
-export type UserRole = 'ADMIN' | 'TRAINER' | 'MEMBER'
+export type UserRole = 'ADMIN' | 'MEMBER'
 
 export interface User {
   _id: string
@@ -8,9 +7,6 @@ export interface User {
   phone: string
   role: UserRole
   isActive: boolean
-  specialization?: string
-  experience?: number
-  qualifications?: string
 }
 
 export interface LoginCredentials {
