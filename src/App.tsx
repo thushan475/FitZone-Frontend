@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import LoginPage from './pages/LoginPage'
@@ -6,6 +7,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage'
 import DashboardPage from './pages/DashboardPage'
 import AdminDashboardPage from './pages/AdminDashboardPage'
 import MemberDashboardPage from './pages/MemberDashboardPage'
+import MemberManagementPage from './pages/MemberManagementPage'
 
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -26,6 +28,10 @@ function App() {
             <Route
               path="/admin/dashboard"
               element={<AdminDashboardPage />}
+            />
+            <Route
+              path="/admin/members"
+              element={<MemberManagementPage />}
             />
           </Route>
 
