@@ -9,6 +9,7 @@ import AdminDashboardPage from './pages/AdminDashboardPage'
 import MemberDashboardPage from './pages/MemberDashboardPage'
 import MemberManagementPage from './pages/MemberManagementPage'
 import TrainerManagementPage from './pages/TrainerManagementPage'
+import WorkoutPlanManagementPage from './pages/WorkoutPlanManagementPage'
 
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -37,6 +38,10 @@ function App() {
             <Route
               path="/admin/trainers"
               element={<TrainerManagementPage />}
+            />
+            <Route
+              path="/admin/workout-plans"
+              element={<WorkoutPlanManagementPage />}
             />
           </Route>
 

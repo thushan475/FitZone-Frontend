@@ -81,6 +81,10 @@ function DashboardLayout({
             navigate("/admin/trainers");
         }
 
+        if (label === "Workout Plans" && isAdmin) {
+            navigate("/admin/workout-plans");
+        }
+
         setSidebarOpen(false);
     };
 
@@ -140,7 +144,7 @@ function DashboardLayout({
                             const available =
                                 item.label === "Dashboard" ||
                                 (isAdmin &&
-                                    ["Members", "Trainers"].includes(item.label));
+                                    ["Members", "Trainers", "Workout Plans"].includes(item.label));
 
                             return (
                                 <button
