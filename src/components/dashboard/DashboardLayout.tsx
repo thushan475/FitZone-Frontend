@@ -85,6 +85,10 @@ function DashboardLayout({
             navigate("/admin/workout-plans");
         }
 
+        if (label === "Membership Plans" && isAdmin) {
+            navigate("/admin/membership-plans");
+        }
+
         setSidebarOpen(false);
     };
 
@@ -144,7 +148,12 @@ function DashboardLayout({
                             const available =
                                 item.label === "Dashboard" ||
                                 (isAdmin &&
-                                    ["Members", "Trainers", "Workout Plans"].includes(item.label));
+                                    [
+                                        "Members",
+                                        "Trainers",
+                                        "Workout Plans",
+                                        "Membership Plans"
+                                    ].includes(item.label));
 
                             return (
                                 <button
