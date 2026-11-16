@@ -1,7 +1,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import api from '../services/api'
-import type { LoginCredentials, User } from '../types/auth.types'
+import type { LoginCredentials, LoginResponse, User } from '../types/auth.types'
 
 interface AuthState {
   user: User | null
@@ -19,16 +19,32 @@ const initialState: AuthState = {
   error: null,
 }
 
-export const loginUser = createAsyncThunk(
+export const loginUser = createAsyncThunk<
+  LoginResponse['data'],
+  LoginCredentials,
+  { rejectValue: string }
+>(
   'auth/login',
-  async (credentials: LoginCredentials, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
-      const response = await api.post('/auth/login', credentials)
-      return response.data.data as { user: User; token: string }
-    } catch (error: any) {
-      return rejectWithValue(
-        error.response?.data?.message || 'Login failed',
+      const response = await api.post<LoginResponse>(
+        '/auth/login',
+        credentials,
       )
+
+      return response.data.data
+    } catch (error: unknown) {
+      if (typeof error === 'object' && error !== null && 'response' in error) {
+        const apiError = error as {
+          response?: { data?: { message?: string } }
+        }
+
+        return rejectWithValue(
+          apiError.response?.data?.message || 'Login failed',
+        )
+      }
+
+      return rejectWithValue('Unable to connect to the server')
     }
   },
 )
@@ -58,13 +74,15 @@ const authSlice = createSlice({
         state.user = action.payload.user
         state.token = action.payload.token
         state.isAuthenticated = true
+        state.error = null
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload as string
+        state.error = action.payload || 'Login failed'
       })
   },
 })
 
 export const { logout, clearAuthError } = authSlice.actions
+
 export default authSlice.reducer
