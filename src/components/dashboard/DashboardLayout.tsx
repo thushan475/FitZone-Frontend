@@ -89,6 +89,10 @@ function DashboardLayout({
             navigate("/admin/membership-plans");
         }
 
+        if (label === "Attendance" && isAdmin) {
+            navigate("/admin/attendance");
+        }
+
         setSidebarOpen(false);
     };
 
@@ -152,7 +156,8 @@ function DashboardLayout({
                                         "Members",
                                         "Trainers",
                                         "Workout Plans",
-                                        "Membership Plans"
+                                        "Membership Plans",
+                                        "Attendance"
                                     ].includes(item.label));
 
                             return (
