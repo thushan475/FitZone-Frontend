@@ -1,5 +1,4 @@
-
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit'
 import api from '../services/api'
 import type { LoginCredentials, LoginResponse, User } from '../types/auth.types'
 
@@ -27,7 +26,6 @@ const getStoredAuth = () => {
   } catch {
     localStorage.removeItem('fitzone_token')
     localStorage.removeItem('fitzone_user')
-
     return { user: null, token: null }
   }
 }
@@ -50,11 +48,7 @@ export const loginUser = createAsyncThunk<
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await api.post<LoginResponse>(
-        '/auth/login',
-        credentials,
-      )
-
+      const response = await api.post<LoginResponse>('/auth/login', credentials)
       return response.data.data
     } catch (error: unknown) {
       if (typeof error === 'object' && error !== null && 'response' in error) {
@@ -82,6 +76,9 @@ const authSlice = createSlice({
       state.isAuthenticated = false
       state.error = null
     },
+    updateUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload
+    },
     clearAuthError: (state) => {
       state.error = null
     },
@@ -106,6 +103,6 @@ const authSlice = createSlice({
   },
 })
 
-export const { logout, clearAuthError } = authSlice.actions
+export const { logout, updateUser, clearAuthError } = authSlice.actions
 
 export default authSlice.reducer

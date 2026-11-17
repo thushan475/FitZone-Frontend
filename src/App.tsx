@@ -16,6 +16,7 @@ import MembershipPlanManagementPage from "./pages/MembershipPlanManagementPage";
 import AttendanceManagementPage from "./pages/AttendanceManagementPage";
 import SubscriptionManagementPage from "./pages/SubscriptionManagementPage";
 import PaymentManagementPage from "./pages/PaymentManagementPage";
+import SettingsPage from "./pages/SettingsPage";
 
 import MemberWorkoutPlansPage from "./pages/MemberWorkoutPlansPage";
 import MySubscriptionPage from "./pages/MySubscriptionPage";
@@ -46,6 +47,15 @@ function App() {
 
                 <Route
                     path="/admin/dashboard"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <AdminDashboardPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/analytics"
                     element={
                         <ProtectedRoute allowedRoles={["ADMIN"]}>
                             <AdminDashboardPage />
@@ -112,6 +122,16 @@ function App() {
                     element={
                         <ProtectedRoute allowedRoles={["ADMIN"]}>
                             <PaymentManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+
+                <Route
+                    path="/admin/settings"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <SettingsPage />
                         </ProtectedRoute>
                     }
                 />

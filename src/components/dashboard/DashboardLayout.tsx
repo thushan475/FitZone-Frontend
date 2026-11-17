@@ -78,6 +78,8 @@ function DashboardLayout({
         Attendance: "/admin/attendance",
         Subscriptions: "/admin/subscriptions",
         Payments: "/admin/payments",
+        Analytics: "/admin/analytics",
+        Settings: "/admin/settings",
         "My Workout Plans": "/member/workout-plans",
         "My Subscription": "/member/subscriptions",
         "My Attendance": "/member/attendance",
@@ -94,7 +96,9 @@ function DashboardLayout({
             "Membership Plans",
             "Attendance",
             "Subscriptions",
-            "Payments"
+            "Payments",
+            "Analytics",
+            "Settings"
         ]
         : [
             "Dashboard",

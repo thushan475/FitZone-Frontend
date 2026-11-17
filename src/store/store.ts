@@ -1,6 +1,5 @@
-
 import { configureStore, createListenerMiddleware } from '@reduxjs/toolkit'
-import authReducer, { logout, loginUser } from './authSlice'
+import authReducer, { logout, loginUser, updateUser } from './authSlice'
 
 const authListenerMiddleware = createListenerMiddleware()
 
@@ -9,6 +8,13 @@ authListenerMiddleware.startListening({
   effect: async (action) => {
     localStorage.setItem('fitzone_token', action.payload.token)
     localStorage.setItem('fitzone_user', JSON.stringify(action.payload.user))
+  },
+})
+
+authListenerMiddleware.startListening({
+  actionCreator: updateUser,
+  effect: async (action) => {
+    localStorage.setItem('fitzone_user', JSON.stringify(action.payload))
   },
 })
 
