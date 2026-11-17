@@ -119,3 +119,11 @@ export const deleteWorkoutPlan = async (
 
     return response.data.data;
 };
+
+export const getMyWorkoutPlans = async (): Promise<WorkoutPlan[]> => {
+    const response = await api.get<ApiResponse<WorkoutPlan[]>>(
+        "/workout-plans/my"
+    );
+
+    return response.data.data;
+};

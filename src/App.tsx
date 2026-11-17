@@ -1,72 +1,63 @@
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import LoginPage from "./pages/LoginPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
-import LoginPage from './pages/LoginPage'
-import ForgotPasswordPage from './pages/ForgotPasswordPage'
-import ResetPasswordPage from './pages/ResetPasswordPage'
-import DashboardPage from './pages/DashboardPage'
-import AdminDashboardPage from './pages/AdminDashboardPage'
-import MemberDashboardPage from './pages/MemberDashboardPage'
-import MemberManagementPage from './pages/MemberManagementPage'
-import TrainerManagementPage from './pages/TrainerManagementPage'
-import WorkoutPlanManagementPage from './pages/WorkoutPlanManagementPage'
-import MembershipPlanManagementPage from './pages/MembershipPlanManagementPage'
-import AttendanceManagementPage from './pages/AttendanceManagementPage'
+import DashboardPage from "./pages/DashboardPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
+import MemberDashboardPage from "./pages/MemberDashboardPage";
 
-import ProtectedRoute from './routes/ProtectedRoute'
+import MemberManagementPage from "./pages/MemberManagementPage";
+import TrainerManagementPage from "./pages/TrainerManagementPage";
+import WorkoutPlanManagementPage from "./pages/WorkoutPlanManagementPage";
+import MembershipPlanManagementPage from "./pages/MembershipPlanManagementPage";
+import AttendanceManagementPage from "./pages/AttendanceManagementPage";
+import SubscriptionManagementPage from "./pages/SubscriptionManagementPage";
+import PaymentManagementPage from "./pages/PaymentManagementPage";
+
+import MemberWorkoutPlansPage from "./pages/MemberWorkoutPlansPage";
+import MySubscriptionPage from "./pages/MySubscriptionPage";
+import MyPaymentsPage from "./pages/MyPaymentsPage";
+
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Navigate to="/login" replace />} />
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
 
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
+                <Route element={<ProtectedRoute />}>
+                    <Route path="/dashboard" element={<DashboardPage />} />
+                </Route>
 
-          <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
-            <Route
-              path="/admin/dashboard"
-              element={<AdminDashboardPage />}
-            />
-            <Route
-              path="/admin/members"
-              element={<MemberManagementPage />}
-            />
-            <Route
-              path="/admin/trainers"
-              element={<TrainerManagementPage />}
-            />
-            <Route
-              path="/admin/workout-plans"
-              element={<WorkoutPlanManagementPage />}
-            />
-            <Route
-              path="/admin/membership-plans"
-              element={<MembershipPlanManagementPage />}
-            />
-            <Route
-              path="/admin/attendance"
-              element={<AttendanceManagementPage />}
-            />
-          </Route>
+                <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
+                    <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+                    <Route path="/admin/members" element={<MemberManagementPage />} />
+                    <Route path="/admin/trainers" element={<TrainerManagementPage />} />
+                    <Route path="/admin/workout-plans" element={<WorkoutPlanManagementPage />} />
+                    <Route path="/admin/membership-plans" element={<MembershipPlanManagementPage />} />
+                    <Route path="/admin/attendance" element={<AttendanceManagementPage />} />
+                    <Route path="/admin/subscriptions" element={<SubscriptionManagementPage />} />
+                    <Route path="/admin/payments" element={<PaymentManagementPage />} />
+                </Route>
 
-          <Route element={<ProtectedRoute allowedRoles={['MEMBER']} />}>
-            <Route
-              path="/member/dashboard"
-              element={<MemberDashboardPage />}
-            />
-          </Route>
-        </Route>
+                <Route element={<ProtectedRoute allowedRoles={["MEMBER"]} />}>
+                    <Route path="/member/dashboard" element={<MemberDashboardPage />} />
+                    <Route path="/member/workout-plans" element={<MemberWorkoutPlansPage />} />
+                    <Route path="/member/subscriptions" element={<MySubscriptionPage />} />
+                    <Route path="/member/payments" element={<MyPaymentsPage />} />
+                </Route>
 
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
-    </BrowserRouter>
-  )
+                <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;

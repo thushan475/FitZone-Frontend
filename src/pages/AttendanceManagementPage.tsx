@@ -59,6 +59,11 @@ const getErrorMessage = (error: unknown) => {
     return response.response?.data?.message || "Something went wrong";
 };
 
+const inputClass =
+    "w-full rounded-xl border border-gray-700 bg-gray-800 px-4 py-3 text-sm text-gray-100 outline-none placeholder:text-gray-500 focus:border-orange-500";
+
+const labelClass = "mb-2 block text-sm font-medium text-gray-300";
+
 export default function AttendanceManagementPage() {
     const [attendance, setAttendance] = useState<Attendance[]>([]);
     const [members, setMembers] = useState<Member[]>([]);
@@ -232,13 +237,13 @@ export default function AttendanceManagementPage() {
             activeItem="Attendance"
             subtitle="FITZONE / ATTENDANCE MANAGEMENT"
         >
-            <div className="space-y-6">
+            <div className="space-y-6 text-gray-100">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                     <div>
-                        <h1 className="text-2xl font-bold text-gray-900">
+                        <h1 className="text-2xl font-bold text-white">
                             Attendance Management
                         </h1>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p className="mt-1 text-sm text-gray-400">
                             Monitor member check-ins and gym attendance.
                         </p>
                     </div>
@@ -253,7 +258,7 @@ export default function AttendanceManagementPage() {
                 </div>
 
                 {success && (
-                    <div className="flex items-center justify-between rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+                    <div className="flex items-center justify-between rounded-xl border border-green-800 bg-green-950/50 px-4 py-3 text-sm text-green-400">
                         <span>{success}</span>
                         <button onClick={() => setSuccess("")}>
                             <X size={17} />
@@ -262,7 +267,7 @@ export default function AttendanceManagementPage() {
                 )}
 
                 {error && (
-                    <div className="flex items-center justify-between rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    <div className="flex items-center justify-between rounded-xl border border-red-800 bg-red-950/50 px-4 py-3 text-sm text-red-400">
                         <span>{error}</span>
                         <button onClick={() => setError("")}>
                             <X size={17} />
@@ -271,94 +276,94 @@ export default function AttendanceManagementPage() {
                 )}
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                    <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                    <div className="rounded-2xl border border-gray-800 bg-gray-900 p-5 shadow-sm">
                         <div className="flex items-center justify-between">
-                            <div className="rounded-xl bg-orange-50 p-3 text-orange-500">
+                            <div className="rounded-xl bg-orange-500/10 p-3 text-orange-400">
                                 <CalendarDays size={22} />
                             </div>
-                            <span className="text-xs font-medium text-gray-400">
+                            <span className="text-xs font-medium text-gray-500">
                                 ALL RECORDS
                             </span>
                         </div>
-                        <p className="mt-4 text-3xl font-bold text-gray-900">
+                        <p className="mt-4 text-3xl font-bold text-white">
                             {attendance.length}
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p className="mt-1 text-sm text-gray-400">
                             Total Attendance
                         </p>
                     </div>
 
-                    <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                    <div className="rounded-2xl border border-gray-800 bg-gray-900 p-5 shadow-sm">
                         <div className="flex items-center justify-between">
-                            <div className="rounded-xl bg-green-50 p-3 text-green-600">
+                            <div className="rounded-xl bg-green-500/10 p-3 text-green-400">
                                 <CheckCircle2 size={22} />
                             </div>
-                            <span className="text-xs font-medium text-gray-400">
+                            <span className="text-xs font-medium text-gray-500">
                                 PRESENT
                             </span>
                         </div>
-                        <p className="mt-4 text-3xl font-bold text-gray-900">
+                        <p className="mt-4 text-3xl font-bold text-white">
                             {presentCount}
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p className="mt-1 text-sm text-gray-400">
                             Present Records
                         </p>
                     </div>
 
-                    <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                    <div className="rounded-2xl border border-gray-800 bg-gray-900 p-5 shadow-sm">
                         <div className="flex items-center justify-between">
-                            <div className="rounded-xl bg-yellow-50 p-3 text-yellow-600">
+                            <div className="rounded-xl bg-yellow-500/10 p-3 text-yellow-400">
                                 <AlertCircle size={22} />
                             </div>
-                            <span className="text-xs font-medium text-gray-400">
+                            <span className="text-xs font-medium text-gray-500">
                                 LATE
                             </span>
                         </div>
-                        <p className="mt-4 text-3xl font-bold text-gray-900">
+                        <p className="mt-4 text-3xl font-bold text-white">
                             {lateCount}
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p className="mt-1 text-sm text-gray-400">
                             Late Records
                         </p>
                     </div>
 
-                    <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                    <div className="rounded-2xl border border-gray-800 bg-gray-900 p-5 shadow-sm">
                         <div className="flex items-center justify-between">
-                            <div className="rounded-xl bg-blue-50 p-3 text-blue-600">
+                            <div className="rounded-xl bg-blue-500/10 p-3 text-blue-400">
                                 <Users size={22} />
                             </div>
-                            <span className="text-xs font-medium text-gray-400">
+                            <span className="text-xs font-medium text-gray-500">
                                 MEMBERS
                             </span>
                         </div>
-                        <p className="mt-4 text-3xl font-bold text-gray-900">
+                        <p className="mt-4 text-3xl font-bold text-white">
                             {members.length}
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p className="mt-1 text-sm text-gray-400">
                             Active Members
                         </p>
                     </div>
                 </div>
 
-                <div className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+                <div className="rounded-2xl border border-gray-800 bg-gray-900 p-5 shadow-sm">
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
                         <div className="relative">
                             <Search
-                                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
                                 size={18}
                             />
                             <input
                                 value={search}
                                 onChange={event => setSearch(event.target.value)}
                                 placeholder="Search member..."
-                                className="w-full rounded-xl border border-gray-200 py-3 pl-10 pr-4 text-sm outline-none focus:border-orange-400"
+                                className={`${inputClass} pl-10`}
                             />
                         </div>
 
                         <select
                             value={statusFilter}
                             onChange={event => setStatusFilter(event.target.value)}
-                            className="rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-orange-400"
+                            className={inputClass}
                         >
                             <option value="ALL">All Statuses</option>
                             <option value="PRESENT">Present</option>
@@ -369,7 +374,7 @@ export default function AttendanceManagementPage() {
                             type="date"
                             value={fromDate}
                             onChange={event => setFromDate(event.target.value)}
-                            className="rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-orange-400"
+                            className={inputClass}
                         />
 
                         <div className="flex gap-2">
@@ -378,7 +383,7 @@ export default function AttendanceManagementPage() {
                                 value={toDate}
                                 min={fromDate || undefined}
                                 onChange={event => setToDate(event.target.value)}
-                                className="min-w-0 flex-1 rounded-xl border border-gray-200 px-3 py-3 text-sm outline-none focus:border-orange-400"
+                                className="min-w-0 flex-1 rounded-xl border border-gray-700 bg-gray-800 px-3 py-3 text-sm text-gray-100 outline-none focus:border-orange-500"
                             />
                             <button
                                 onClick={() => {
@@ -387,7 +392,7 @@ export default function AttendanceManagementPage() {
                                     setFromDate("");
                                     setToDate("");
                                 }}
-                                className="rounded-xl border border-gray-200 px-3 text-gray-500 transition hover:bg-gray-50"
+                                className="rounded-xl border border-gray-700 px-3 text-gray-400 transition hover:bg-gray-800 hover:text-white"
                                 title="Clear filters"
                             >
                                 <RefreshCw size={17} />
@@ -396,10 +401,10 @@ export default function AttendanceManagementPage() {
                     </div>
                 </div>
 
-                <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
-                    <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+                <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gray-900 shadow-sm">
+                    <div className="flex items-center justify-between border-b border-gray-800 px-5 py-4">
                         <div>
-                            <h2 className="font-bold text-gray-900">
+                            <h2 className="font-bold text-white">
                                 Attendance Records
                             </h2>
                             <p className="mt-1 text-xs text-gray-500">
@@ -416,19 +421,19 @@ export default function AttendanceManagementPage() {
                         <div className="px-5 py-16 text-center">
                             <CalendarDays
                                 size={40}
-                                className="mx-auto text-gray-300"
+                                className="mx-auto text-gray-600"
                             />
-                            <h3 className="mt-3 font-semibold text-gray-700">
+                            <h3 className="mt-3 font-semibold text-gray-300">
                                 No attendance records found
                             </h3>
-                            <p className="mt-1 text-sm text-gray-400">
+                            <p className="mt-1 text-sm text-gray-500">
                                 Record attendance or change your filters.
                             </p>
                         </div>
                     ) : (
                         <div className="overflow-x-auto">
                             <table className="w-full min-w-[850px] text-left">
-                                <thead className="bg-gray-50 text-xs uppercase tracking-wider text-gray-500">
+                                <thead className="bg-gray-800/70 text-xs uppercase tracking-wider text-gray-400">
                                     <tr>
                                         <th className="px-5 py-4">Member</th>
                                         <th className="px-5 py-4">Date</th>
@@ -438,38 +443,38 @@ export default function AttendanceManagementPage() {
                                         <th className="px-5 py-4 text-right">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-100">
+                                <tbody className="divide-y divide-gray-800">
                                     {filteredAttendance.map(record => (
                                         <tr
                                             key={record._id}
-                                            className="transition hover:bg-gray-50"
+                                            className="transition hover:bg-gray-800/50"
                                         >
                                             <td className="px-5 py-4">
-                                                <p className="font-semibold text-gray-800">
+                                                <p className="font-semibold text-gray-200">
                                                     {record.member?.name || "Unknown"}
                                                 </p>
-                                                <p className="mt-1 text-xs text-gray-400">
+                                                <p className="mt-1 text-xs text-gray-500">
                                                     {record.member?.email || "-"}
                                                 </p>
                                             </td>
-                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                            <td className="px-5 py-4 text-sm text-gray-300">
                                                 {formatDate(record.attendanceDate)}
                                             </td>
-                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                            <td className="px-5 py-4 text-sm text-gray-300">
                                                 <span className="flex items-center gap-2">
                                                     <Clock size={15} />
                                                     {formatTime(record.checkIn)}
                                                 </span>
                                             </td>
-                                            <td className="px-5 py-4 text-sm text-gray-600">
+                                            <td className="px-5 py-4 text-sm text-gray-300">
                                                 {formatTime(record.checkOut)}
                                             </td>
                                             <td className="px-5 py-4">
                                                 <span
                                                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
                                                         record.status === "PRESENT"
-                                                            ? "bg-green-50 text-green-700"
-                                                            : "bg-yellow-50 text-yellow-700"
+                                                            ? "bg-green-500/10 text-green-400"
+                                                            : "bg-yellow-500/10 text-yellow-400"
                                                     }`}
                                                 >
                                                     {record.status}
@@ -483,7 +488,7 @@ export default function AttendanceManagementPage() {
                                                             setModal("view");
                                                         }}
                                                         title="View"
-                                                        className="rounded-lg border border-gray-200 p-2 text-gray-500 hover:bg-gray-100"
+                                                        className="rounded-lg border border-gray-700 p-2 text-gray-400 hover:bg-gray-800 hover:text-white"
                                                     >
                                                         <Eye size={16} />
                                                     </button>
@@ -492,7 +497,7 @@ export default function AttendanceManagementPage() {
                                                         <button
                                                             onClick={() => openCheckoutModal(record)}
                                                             title="Check out"
-                                                            className="rounded-lg border border-blue-100 p-2 text-blue-600 hover:bg-blue-50"
+                                                            className="rounded-lg border border-blue-900 p-2 text-blue-400 hover:bg-blue-950"
                                                         >
                                                             <LogOut size={16} />
                                                         </button>
@@ -501,7 +506,7 @@ export default function AttendanceManagementPage() {
                                                     <button
                                                         onClick={() => void handleDelete(record)}
                                                         title="Delete"
-                                                        className="rounded-lg border border-red-100 p-2 text-red-500 hover:bg-red-50"
+                                                        className="rounded-lg border border-red-900 p-2 text-red-400 hover:bg-red-950"
                                                     >
                                                         <Trash2 size={16} />
                                                     </button>
@@ -517,11 +522,11 @@ export default function AttendanceManagementPage() {
             </div>
 
             {modal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 p-4">
-                    <div className="my-8 w-full max-w-xl rounded-2xl bg-white shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+                <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm">
+                    <div className="my-8 w-full max-w-xl rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-gray-800 px-6 py-5">
                             <div>
-                                <h2 className="text-lg font-bold text-gray-900">
+                                <h2 className="text-lg font-bold text-white">
                                     {modal === "create"
                                         ? "Record Attendance"
                                         : modal === "checkout"
@@ -534,7 +539,7 @@ export default function AttendanceManagementPage() {
                             </div>
                             <button
                                 onClick={closeModal}
-                                className="rounded-lg p-2 text-gray-400 hover:bg-gray-100"
+                                className="rounded-lg p-2 text-gray-400 hover:bg-gray-800 hover:text-white"
                             >
                                 <X size={20} />
                             </button>
@@ -543,14 +548,14 @@ export default function AttendanceManagementPage() {
                         {modal === "create" && (
                             <form onSubmit={handleCreate} className="space-y-5 p-6">
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    <label className={labelClass}>
                                         Select Member *
                                     </label>
                                     <select
                                         required
                                         value={memberId}
                                         onChange={event => setMemberId(event.target.value)}
-                                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-orange-400"
+                                        className={inputClass}
                                     >
                                         <option value="">Choose a member</option>
                                         {members.map(member => (
@@ -562,25 +567,25 @@ export default function AttendanceManagementPage() {
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    <label className={labelClass}>
                                         Check-in Date & Time
                                     </label>
                                     <input
                                         type="datetime-local"
                                         value={checkIn}
                                         onChange={event => setCheckIn(event.target.value)}
-                                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-orange-400"
+                                        className={inputClass}
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    <label className={labelClass}>
                                         Attendance Status
                                     </label>
                                     <select
                                         value={status}
                                         onChange={event => setStatus(event.target.value as AttendanceStatus)}
-                                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-orange-400"
+                                        className={inputClass}
                                     >
                                         <option value="PRESENT">Present</option>
                                         <option value="LATE">Late</option>
@@ -588,7 +593,7 @@ export default function AttendanceManagementPage() {
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    <label className={labelClass}>
                                         Notes
                                     </label>
                                     <textarea
@@ -596,7 +601,7 @@ export default function AttendanceManagementPage() {
                                         value={notes}
                                         onChange={event => setNotes(event.target.value)}
                                         placeholder="Optional notes..."
-                                        className="w-full resize-none rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-orange-400"
+                                        className={`${inputClass} resize-none`}
                                     />
                                 </div>
 
@@ -604,7 +609,7 @@ export default function AttendanceManagementPage() {
                                     <button
                                         type="button"
                                         onClick={closeModal}
-                                        className="rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-600 hover:bg-gray-50"
+                                        className="rounded-xl border border-gray-700 px-5 py-3 text-sm font-semibold text-gray-300 hover:bg-gray-800"
                                     >
                                         Cancel
                                     </button>
@@ -621,17 +626,17 @@ export default function AttendanceManagementPage() {
 
                         {modal === "checkout" && selected && (
                             <form onSubmit={handleCheckout} className="space-y-5 p-6">
-                                <div className="rounded-xl bg-gray-50 p-4">
-                                    <p className="text-sm font-semibold text-gray-800">
+                                <div className="rounded-xl border border-gray-700 bg-gray-800 p-4">
+                                    <p className="text-sm font-semibold text-white">
                                         {selected.member?.name}
                                     </p>
-                                    <p className="mt-1 text-xs text-gray-500">
+                                    <p className="mt-1 text-xs text-gray-400">
                                         Check-in: {formatTime(selected.checkIn)}
                                     </p>
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    <label className={labelClass}>
                                         Check-out Date & Time *
                                     </label>
                                     <input
@@ -639,7 +644,7 @@ export default function AttendanceManagementPage() {
                                         required
                                         value={checkOut}
                                         onChange={event => setCheckOut(event.target.value)}
-                                        className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-orange-400"
+                                        className={inputClass}
                                     />
                                 </div>
 
@@ -647,7 +652,7 @@ export default function AttendanceManagementPage() {
                                     <button
                                         type="button"
                                         onClick={closeModal}
-                                        className="rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-600"
+                                        className="rounded-xl border border-gray-700 px-5 py-3 text-sm font-semibold text-gray-300 hover:bg-gray-800"
                                     >
                                         Cancel
                                     </button>
@@ -664,48 +669,48 @@ export default function AttendanceManagementPage() {
 
                         {modal === "view" && selected && (
                             <div className="space-y-4 p-6">
-                                <div className="rounded-xl bg-gray-50 p-4">
-                                    <p className="text-xs font-medium uppercase text-gray-400">
+                                <div className="rounded-xl border border-gray-700 bg-gray-800 p-4">
+                                    <p className="text-xs font-medium uppercase text-gray-500">
                                         Member
                                     </p>
-                                    <p className="mt-1 font-semibold text-gray-900">
+                                    <p className="mt-1 font-semibold text-white">
                                         {selected.member?.name || "Unknown"}
                                     </p>
-                                    <p className="mt-1 text-sm text-gray-500">
+                                    <p className="mt-1 text-sm text-gray-400">
                                         {selected.member?.email || "-"}
                                     </p>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="rounded-xl border border-gray-100 p-4">
-                                        <p className="text-xs text-gray-400">Date</p>
-                                        <p className="mt-2 text-sm font-semibold text-gray-800">
+                                    <div className="rounded-xl border border-gray-700 p-4">
+                                        <p className="text-xs text-gray-500">Date</p>
+                                        <p className="mt-2 text-sm font-semibold text-gray-200">
                                             {formatDate(selected.attendanceDate)}
                                         </p>
                                     </div>
-                                    <div className="rounded-xl border border-gray-100 p-4">
-                                        <p className="text-xs text-gray-400">Status</p>
-                                        <p className="mt-2 text-sm font-semibold text-gray-800">
+                                    <div className="rounded-xl border border-gray-700 p-4">
+                                        <p className="text-xs text-gray-500">Status</p>
+                                        <p className="mt-2 text-sm font-semibold text-gray-200">
                                             {selected.status}
                                         </p>
                                     </div>
-                                    <div className="rounded-xl border border-gray-100 p-4">
-                                        <p className="text-xs text-gray-400">Check In</p>
-                                        <p className="mt-2 text-sm font-semibold text-gray-800">
+                                    <div className="rounded-xl border border-gray-700 p-4">
+                                        <p className="text-xs text-gray-500">Check In</p>
+                                        <p className="mt-2 text-sm font-semibold text-gray-200">
                                             {formatTime(selected.checkIn)}
                                         </p>
                                     </div>
-                                    <div className="rounded-xl border border-gray-100 p-4">
-                                        <p className="text-xs text-gray-400">Check Out</p>
-                                        <p className="mt-2 text-sm font-semibold text-gray-800">
+                                    <div className="rounded-xl border border-gray-700 p-4">
+                                        <p className="text-xs text-gray-500">Check Out</p>
+                                        <p className="mt-2 text-sm font-semibold text-gray-200">
                                             {formatTime(selected.checkOut)}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="rounded-xl border border-gray-100 p-4">
-                                    <p className="text-xs text-gray-400">Notes</p>
-                                    <p className="mt-2 text-sm text-gray-700">
+                                <div className="rounded-xl border border-gray-700 p-4">
+                                    <p className="text-xs text-gray-500">Notes</p>
+                                    <p className="mt-2 text-sm text-gray-300">
                                         {selected.notes || "No notes added"}
                                     </p>
                                 </div>
@@ -713,7 +718,7 @@ export default function AttendanceManagementPage() {
                                 <div className="flex justify-end">
                                     <button
                                         onClick={closeModal}
-                                        className="rounded-xl bg-gray-900 px-6 py-3 text-sm font-semibold text-white hover:bg-gray-800"
+                                        className="rounded-xl bg-orange-500 px-6 py-3 text-sm font-semibold text-white hover:bg-orange-600"
                                     >
                                         Close
                                     </button>

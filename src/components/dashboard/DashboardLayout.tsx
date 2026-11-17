@@ -52,6 +52,7 @@ function DashboardLayout({
         { label: "Workout Plans", icon: Dumbbell },
         { label: "Membership Plans", icon: CreditCard },
         { label: "Attendance", icon: CalendarDays },
+        { label: "Subscriptions", icon: CreditCard },
         { label: "Payments", icon: Wallet },
         { label: "Analytics", icon: BarChart3 },
         { label: "Settings", icon: Settings }
@@ -68,29 +69,43 @@ function DashboardLayout({
 
     const navigation = isAdmin ? adminNavigation : memberNavigation;
 
+    const navigationRoutes: Record<string, string> = {
+        Dashboard: isAdmin ? "/admin/dashboard" : "/member/dashboard",
+        Members: "/admin/members",
+        Trainers: "/admin/trainers",
+        "Workout Plans": "/admin/workout-plans",
+        "Membership Plans": "/admin/membership-plans",
+        Attendance: "/admin/attendance",
+        Subscriptions: "/admin/subscriptions",
+        Payments: "/admin/payments",
+        "My Workout Plans": "/member/workout-plans",
+        "My Subscription": "/member/subscriptions",
+        "My Payments": "/member/payments"
+    };
+
+    const availableItems = isAdmin
+        ? [
+            "Dashboard",
+            "Members",
+            "Trainers",
+            "Workout Plans",
+            "Membership Plans",
+            "Attendance",
+            "Subscriptions",
+            "Payments"
+        ]
+        : [
+            "Dashboard",
+            "My Workout Plans",
+            "My Subscription",
+            "My Payments"
+        ];
+
     const handleNavigation = (label: string) => {
-        if (label === "Dashboard") {
-            navigate(isAdmin ? "/admin/dashboard" : "/member/dashboard");
-        }
+        const route = navigationRoutes[label];
 
-        if (label === "Members" && isAdmin) {
-            navigate("/admin/members");
-        }
-
-        if (label === "Trainers" && isAdmin) {
-            navigate("/admin/trainers");
-        }
-
-        if (label === "Workout Plans" && isAdmin) {
-            navigate("/admin/workout-plans");
-        }
-
-        if (label === "Membership Plans" && isAdmin) {
-            navigate("/admin/membership-plans");
-        }
-
-        if (label === "Attendance" && isAdmin) {
-            navigate("/admin/attendance");
+        if (route && availableItems.includes(label)) {
+            navigate(route);
         }
 
         setSidebarOpen(false);
@@ -148,17 +163,7 @@ function DashboardLayout({
                         {navigation.map((item) => {
                             const Icon = item.icon;
                             const isActive = activeItem === item.label;
-
-                            const available =
-                                item.label === "Dashboard" ||
-                                (isAdmin &&
-                                    [
-                                        "Members",
-                                        "Trainers",
-                                        "Workout Plans",
-                                        "Membership Plans",
-                                        "Attendance"
-                                    ].includes(item.label));
+                            const available = availableItems.includes(item.label);
 
                             return (
                                 <button
