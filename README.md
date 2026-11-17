@@ -163,3 +163,26 @@ The frontend is deployed using Vercel and communicates with the FitZone backend 
 ---
 
 Developed as an academic project for the Rapid Application Development (RAD) module.
+
+## Application Screenshots
+
+### Screenshot 1
+![FitZone Screenshot 1](screenshots/screenshot-01.png)
+
+### Screenshot 2
+![FitZone Screenshot 2](screenshots/screenshot-02.png)
+
+### Screenshot 3
+![FitZone Screenshot 3](screenshots/screenshot-03.png)
+
+### Screenshot 4
+![FitZone Screenshot 4](screenshots/screenshot-04.png)
+
+### Screenshot 5
+![FitZone Screenshot 5](screenshots/screenshot-05.png)
+
+### Screenshot 6
+![FitZone Screenshot 6](screenshots/screenshot-06.png)
+
+### Screenshot 7
+![FitZone Screenshot 7](screenshots/screenshot-07.png)
