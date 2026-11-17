@@ -80,7 +80,9 @@ function DashboardLayout({
         Payments: "/admin/payments",
         "My Workout Plans": "/member/workout-plans",
         "My Subscription": "/member/subscriptions",
-        "My Payments": "/member/payments"
+        "My Attendance": "/member/attendance",
+        "My Payments": "/member/payments",
+        "My Progress": "/member/progress"
     };
 
     const availableItems = isAdmin
@@ -98,7 +100,9 @@ function DashboardLayout({
             "Dashboard",
             "My Workout Plans",
             "My Subscription",
-            "My Payments"
+            "My Attendance",
+            "My Payments",
+            "My Progress"
         ];
 
     const handleNavigation = (label: string) => {

@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
@@ -18,7 +19,9 @@ import PaymentManagementPage from "./pages/PaymentManagementPage";
 
 import MemberWorkoutPlansPage from "./pages/MemberWorkoutPlansPage";
 import MySubscriptionPage from "./pages/MySubscriptionPage";
+import MyAttendancePage from "./pages/MyAttendancePage";
 import MyPaymentsPage from "./pages/MyPaymentsPage";
+import MyProgressPage from "./pages/MyProgressPage";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
@@ -32,29 +35,142 @@ function App() {
                 <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                 <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
 
-                <Route element={<ProtectedRoute />}>
-                    <Route path="/dashboard" element={<DashboardPage />} />
-                </Route>
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <DashboardPage />
+                        </ProtectedRoute>
+                    }
+                />
 
-                <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
-                    <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-                    <Route path="/admin/members" element={<MemberManagementPage />} />
-                    <Route path="/admin/trainers" element={<TrainerManagementPage />} />
-                    <Route path="/admin/workout-plans" element={<WorkoutPlanManagementPage />} />
-                    <Route path="/admin/membership-plans" element={<MembershipPlanManagementPage />} />
-                    <Route path="/admin/attendance" element={<AttendanceManagementPage />} />
-                    <Route path="/admin/subscriptions" element={<SubscriptionManagementPage />} />
-                    <Route path="/admin/payments" element={<PaymentManagementPage />} />
-                </Route>
+                <Route
+                    path="/admin/dashboard"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <AdminDashboardPage />
+                        </ProtectedRoute>
+                    }
+                />
 
-                <Route element={<ProtectedRoute allowedRoles={["MEMBER"]} />}>
-                    <Route path="/member/dashboard" element={<MemberDashboardPage />} />
-                    <Route path="/member/workout-plans" element={<MemberWorkoutPlansPage />} />
-                    <Route path="/member/subscriptions" element={<MySubscriptionPage />} />
-                    <Route path="/member/payments" element={<MyPaymentsPage />} />
-                </Route>
+                <Route
+                    path="/admin/members"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <MemberManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
 
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                <Route
+                    path="/admin/trainers"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <TrainerManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/workout-plans"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <WorkoutPlanManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/membership-plans"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <MembershipPlanManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/attendance"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <AttendanceManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/subscriptions"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <SubscriptionManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/payments"
+                    element={
+                        <ProtectedRoute allowedRoles={["ADMIN"]}>
+                            <PaymentManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/member/dashboard"
+                    element={
+                        <ProtectedRoute allowedRoles={["MEMBER"]}>
+                            <MemberDashboardPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/member/workout-plans"
+                    element={
+                        <ProtectedRoute allowedRoles={["MEMBER"]}>
+                            <MemberWorkoutPlansPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/member/subscriptions"
+                    element={
+                        <ProtectedRoute allowedRoles={["MEMBER"]}>
+                            <MySubscriptionPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/member/attendance"
+                    element={
+                        <ProtectedRoute allowedRoles={["MEMBER"]}>
+                            <MyAttendancePage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/member/payments"
+                    element={
+                        <ProtectedRoute allowedRoles={["MEMBER"]}>
+                            <MyPaymentsPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/member/progress"
+                    element={
+                        <ProtectedRoute allowedRoles={["MEMBER"]}>
+                            <MyProgressPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </BrowserRouter>
     );
