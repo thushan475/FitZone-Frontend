@@ -20,6 +20,7 @@ import {
     X
 } from "lucide-react";
 import { logout } from "../../store/authSlice";
+import api from "../../services/api";
 import type { RootState } from "../../store/store";
 
 interface DashboardLayoutProps {
@@ -119,9 +120,14 @@ function DashboardLayout({
         setSidebarOpen(false);
     };
 
-    const handleLogout = () => {
-        dispatch(logout());
-        navigate("/login", { replace: true });
+    const handleLogout = async () => {
+        try {
+            await api.post("/auth/logout");
+        } catch {
+        } finally {
+            dispatch(logout());
+            navigate("/login", { replace: true });
+        }
     };
 
     return (
