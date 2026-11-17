@@ -180,8 +180,13 @@ export default function AttendanceManagementPage() {
     };
 
     const openCheckoutModal = (record: Attendance) => {
+        const now = new Date();
+        const localDateTime = new Date(
+            now.getTime() - now.getTimezoneOffset() * 60000
+        ).toISOString().slice(0, 16);
+
         setSelected(record);
-        setCheckOut(new Date().toISOString().slice(0, 16));
+        setCheckOut(localDateTime);
         setModal("checkout");
         setError("");
     };
