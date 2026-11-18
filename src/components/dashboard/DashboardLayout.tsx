@@ -140,11 +140,11 @@ function DashboardLayout({
             )}
 
             <aside
-                className={`fixed inset-y-0 left-0 z-50 flex w-[260px] flex-col border-r border-white/5 bg-[#20232c] transition-transform duration-300 lg:translate-x-0 ${
+                className={`fixed inset-y-0 left-0 z-50 flex h-dvh w-[260px] flex-col overflow-y-auto overscroll-contain border-r border-white/5 bg-[#20232c] transition-transform duration-300 lg:translate-x-0 ${
                     sidebarOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >
-                <div className="flex h-20 items-center justify-between border-b border-white/5 px-6">
+                <div className="flex h-20 shrink-0 items-center justify-between border-b border-white/5 px-6">
                     <div className="flex items-center gap-3">
                         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500">
                             <Dumbbell size={23} className="text-white" />
@@ -168,7 +168,7 @@ function DashboardLayout({
                     </button>
                 </div>
 
-                <div className="px-5 pt-7">
+                <div className="shrink-0 px-5 pt-7">
                     <p className="mb-4 px-2 text-[10px] font-bold uppercase tracking-[2px] text-gray-500">
                         Main Menu
                     </p>
@@ -208,7 +208,7 @@ function DashboardLayout({
                     </nav>
                 </div>
 
-                <div className="mt-auto p-5">
+                <div className="mt-auto shrink-0 p-5">
                     <div className="mb-4 rounded-2xl border border-orange-500/10 bg-orange-500/5 p-4">
                         <div className="mb-3 flex items-center gap-2">
                             <Sparkles size={17} className="text-orange-400" />
